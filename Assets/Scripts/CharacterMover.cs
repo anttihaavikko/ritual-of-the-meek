@@ -12,7 +12,8 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private AutoSpriteOrder autoSorter;
     [SerializeField] private GameObject jumpTrail;
-    
+    [SerializeField] private Dog dog;
+
     public bool Locked { get; set; }
 
     private Transform t;
@@ -88,6 +89,11 @@ public class CharacterMover : MonoBehaviour
 
     private Vector3 GetInput()
     {
+        if (dog)
+        {
+            return dog.GetDirection();
+        }
+        
         var h = Input.GetAxisRaw("Horizontal");
         var v = Input.GetAxisRaw("Vertical");
         return new Vector3(h, v, 0);
