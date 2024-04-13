@@ -22,8 +22,9 @@ public class Grabber : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            var current = Physics2D.OverlapPoint(characterMover.transform.position, layerMask);
             var block = Physics2D.OverlapPoint(mp, layerMask);
-            if (block)
+            if (block && block != current)
             {
                 var body = block.GetComponentInParent<Rigidbody2D>();
                 if (!body) return;
