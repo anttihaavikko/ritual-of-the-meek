@@ -7,11 +7,17 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private GameObject map;
     [SerializeField] private SpeechBubble bubble;
+    [SerializeField] private GameObject bag;
 
     private BubbleType hideWith;
     private readonly List<string> shownMessages = new ();
     private int candles;
     private readonly List<CollectibleType> collection = new();
+    
+    public bool HasBag { get; private set; }
+    public bool HasMap { get; private set; }
+    public bool HasDagger { get; private set; }
+    public bool HasVessel{ get; private set; }
 
     private void Start()
     {
@@ -75,7 +81,7 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && HasMap)
         {
             map.SetActive(!map.activeSelf);
             HideBubbleIf(BubbleType.Map);
@@ -95,11 +101,14 @@ public class Game : MonoBehaviour
         {
             if (type == CollectibleType.Map)
             {
+                HasMap = true;
                 ShowMessage("Oh nice! This (map) is bound to be (useful). View it with (TAB) key.", BubbleType.Map);
             }
             
             if (type == CollectibleType.Bag)
             {
+                HasBag = true;
+                bag.SetActive(true);
                 ShowMessage("This (bag) can hold (extra platforms)! Press (SPACE) while holding one to (store) it.", BubbleType.Hold);
             }
                 

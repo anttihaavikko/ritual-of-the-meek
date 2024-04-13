@@ -73,6 +73,8 @@ public class Grabber : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (!game.HasBag) return;
+            
             if (held && !stored)
             {
                 game.ShowMessage("I can (pull that out) any time I want by pressing (SPACE) again.", BubbleType.Release);
