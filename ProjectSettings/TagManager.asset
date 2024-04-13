@@ -14,10 +14,10 @@ TagManager:
   - Tiles
   - Room
   - Activator
-  - Invisibles
+  - Map Only
   - Collectibles
-  - 
-  - 
+  - Walls
+  - Invisibles
   - 
   - 
   - 
