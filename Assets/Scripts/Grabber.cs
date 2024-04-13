@@ -23,13 +23,12 @@ public class Grabber : MonoBehaviour
             var block = Physics2D.OverlapPoint(mp, layerMask);
             if (block)
             {
-                Debug.Log($"Connecting to {block.name}");
                 connected = block.GetComponentInParent<Rigidbody2D>();
                 connected.bodyType = RigidbodyType2D.Dynamic;
                 connected.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                 joint.connectedBody = connected;
-                joint.connectedAnchor = mp;
-                joint.anchor = mp;
+                joint.connectedAnchor = connected.transform.InverseTransformPoint(mp);
+                joint.anchor = Vector2.zero;
             }
 
             return;
@@ -38,7 +37,8 @@ public class Grabber : MonoBehaviour
         if (connected && Input.GetMouseButtonUp(0))
         {
             joint.connectedBody = null;
-            connected.bodyType = RigidbodyType2D.Static;
+            connected.bodyType = RigidbodyType2D.Kinematic;
+            connected.velocity = Vector2.zero;
             connected = null;
         }
     }

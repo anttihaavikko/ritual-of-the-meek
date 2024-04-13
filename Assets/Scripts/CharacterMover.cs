@@ -75,7 +75,7 @@ public class CharacterMover : MonoBehaviour
         return false;
     }
 
-    private Collider2D Check(Vector3 pos, LayerMask layerMask, float radius = 0.1f)
+    private Collider2D Check(Vector3 pos, LayerMask layerMask, float radius = 0.01f)
     {
         return Physics2D.OverlapCircle(pos, radius, layerMask);
     }
