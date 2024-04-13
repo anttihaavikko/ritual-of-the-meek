@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AnttiStarterKit.Extensions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Grabber : MonoBehaviour
@@ -17,11 +18,19 @@ public class Grabber : MonoBehaviour
     private Tile held;
     private Tile stored;
     private Tile preview;
+    private Vector3 grabPosition;
+    private Vector3 offset;
 
     private void Update()
     {
         var mp = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
         body.MovePosition(mp);
+
+        if (held)
+        {
+            var p = held.transform.position;
+            grabPosition = p + offset;
+        }
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -49,7 +58,10 @@ public class Grabber : MonoBehaviour
                     connected.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                     joint.connectedBody = connected;
                     joint.connectedAnchor = connected.transform.InverseTransformPoint(mp);
-                    joint.anchor = Vector2.zero;   
+                    joint.anchor = Vector2.zero;
+                    offset = mp - start;
+
+                    characterMover.Channel(true);
                 }
             }
 
@@ -96,5 +108,11 @@ public class Grabber : MonoBehaviour
         connected.bodyType = RigidbodyType2D.Kinematic;
         connected.velocity = Vector2.zero;
         connected = null;
+        characterMover.Channel(false);
+    }
+
+    public Vector3 GetGrabPosition()
+    {
+        return grabPosition;
     }
 }

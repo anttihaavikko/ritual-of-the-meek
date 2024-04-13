@@ -21,6 +21,7 @@ public class CharacterMover : MonoBehaviour
     private bool jumping, flying;
     
     private static readonly int Walking = Animator.StringToHash("walking");
+    private static readonly int Channeling = Animator.StringToHash("channeling");
 
     private void Start()
     {
@@ -97,5 +98,10 @@ public class CharacterMover : MonoBehaviour
         var h = Input.GetAxisRaw("Horizontal");
         var v = Input.GetAxisRaw("Vertical");
         return new Vector3(h, v, 0);
+    }
+
+    public void Channel(bool state)
+    {
+        anim.SetBool(Channeling, state);
     }
 }

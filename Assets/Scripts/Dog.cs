@@ -11,7 +11,7 @@ public class Dog : MonoBehaviour
     {
         var mp = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
         var diff = mp - transform.position;
-        var dir = diff.magnitude is > 0.3f and < 5f ? diff.normalized : Vector3.zero;
+        var dir = diff.magnitude is > 0.5f and < 5f ? diff.normalized : Vector3.zero;
         if (Mathf.Abs(dir.x) > 0.2f)
         {
             var t = transform;
