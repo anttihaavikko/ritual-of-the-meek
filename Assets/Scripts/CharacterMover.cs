@@ -12,6 +12,8 @@ public class CharacterMover : MonoBehaviour
     [SerializeField] private float speed = 1f;
     [SerializeField] private AutoSpriteOrder autoSorter;
     [SerializeField] private GameObject jumpTrail;
+    
+    public bool Locked { get; set; }
 
     private Transform t;
     private Animator anim;
@@ -40,33 +42,37 @@ public class CharacterMover : MonoBehaviour
     private bool TryMoves(Vector3 input)
     {
         if (TryMove(input)) return true;
-        if (TryMove(input, true)) return true;
+        // if (TryMove(input, true)) return true;
         if (TryMove(input.WhereX(0))) return true;
-        if (TryMove(input.WhereX(0), true)) return true;
+        // if (TryMove(input.WhereX(0), true)) return true;
         if (TryMove(input.WhereY(0))) return true;
-        if (TryMove(input.WhereY(0), true)) return true;
+        // if (TryMove(input.WhereY(0), true)) return true;
         return false;
     }
 
-    private bool TryMove(Vector3 direction, bool further = false)
+    private bool TryMove(Vector3 direction)
     {
-        if (direction.magnitude < 0.1f) return false;
+        if (Locked || direction.magnitude < 0.1f) return false;
         
-        var mod = further ? 15f : 1f;
-        var pos = t.position + direction * mod * 0.06f;
-        const float distance = 0.3f;
+        var pos = t.position + direction * 0.03f;
+        const float distance = 0.25f;
+        const float vertical = 0.5f;
         
-        var leftBlocked = Check(pos + Vector3.left * distance, blockMask);
-        var rightBlocked = Check(pos + Vector3.right * distance, blockMask);
-        if (leftBlocked || rightBlocked) return false;
+        // var leftBlocked = Check(pos + Vector3.left * distance, blockMask);
+        // var rightBlocked = Check(pos + Vector3.right * distance, blockMask);
+        // if (leftBlocked || rightBlocked) return false;
         
         var left = Check(pos + Vector3.left * distance, walkMask);
         var right = Check(pos + Vector3.right * distance, walkMask);
+        var up = Check(pos + Vector3.up * distance * vertical, walkMask);
+        var down = Check(pos + Vector3.down * distance * vertical, walkMask);
 
-        // DebugDraw.Square(pos + Vector3.left * distance, Color.red, 0.1f);
-        // DebugDraw.Square(pos + Vector3.right * distance, Color.red, 0.1f);
+        // DebugDraw.Square(pos + Vector3.left * distance, left ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.right * distance, right ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.up * distance * vertical, up ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.down * distance * vertical, down ? Color.green : Color.red, 0.3f);
 
-        if (left && right)
+        if (left && right && up && down)
         {
             t.position += direction * 0.06f;
             return true;

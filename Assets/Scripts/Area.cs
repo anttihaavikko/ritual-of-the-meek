@@ -8,20 +8,20 @@ public class Area : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        ColorizeTile(col, Color.white);
+        MarkTile(col, 1);
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        ColorizeTile(col, offColor);
+        MarkTile(col, -1);
     }
 
-    private void ColorizeTile(Collider2D from, Color color)
+    private void MarkTile(Component from, int dir)
     {
         var tile = from.GetComponentInParent<Tile>();
         if (tile)
         {
-            tile.Color(color);
+            tile.AddOrRemove(dir, offColor);
         }
     }
 }
