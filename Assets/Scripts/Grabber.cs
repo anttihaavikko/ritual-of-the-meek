@@ -14,6 +14,9 @@ public class Grabber : MonoBehaviour
 
     private Rigidbody2D connected;
     private Vector3 start;
+    private Tile held;
+    private Tile stored;
+    private Tile preview;
 
     private void Update()
     {
@@ -22,6 +25,13 @@ public class Grabber : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            if (preview)
+            {
+                preview.Solidify();
+                preview = null;
+                return;
+            }
+            
             var current = Physics2D.OverlapPoint(characterMover.transform.position, layerMask);
             var block = Physics2D.OverlapPoint(mp, layerMask);
             if (block && block != current)
@@ -31,6 +41,7 @@ public class Grabber : MonoBehaviour
                 var tile = body.GetComponent<Tile>();
                 if (tile && tile.CanMove)
                 {
+                    held = tile;
                     start = tile.transform.position;
                     connected = body;
                     characterMover.Locked = true;
@@ -45,15 +56,45 @@ public class Grabber : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (held && !stored)
+            {
+                held.gameObject.SetActive(false);
+                stored = held;
+                Drop();
+                return;
+            }
+
+            if (!held && stored)
+            {
+                stored.gameObject.SetActive(true);
+                stored.Ghost();
+                preview = stored;
+                stored = null;
+            }
+        }
+
+        if (preview)
+        {
+            preview.transform.position = mp;
+        }
+
         if (connected && Input.GetMouseButtonUp(0))
         {
-            var tile = connected.GetComponent<Tile>();
-            if(tile && !tile.CanMove) tile.transform.position = start;
-            characterMover.Locked = false;
-            joint.connectedBody = null;
-            connected.bodyType = RigidbodyType2D.Kinematic;
-            connected.velocity = Vector2.zero;
-            connected = null;
+            Drop();
         }
+    }
+
+    private void Drop()
+    {
+        var tile = connected.GetComponent<Tile>();
+        if (tile && !tile.CanMove) tile.transform.position = start;
+        held = null;
+        characterMover.Locked = false;
+        joint.connectedBody = null;
+        connected.bodyType = RigidbodyType2D.Kinematic;
+        connected.velocity = Vector2.zero;
+        connected = null;
     }
 }

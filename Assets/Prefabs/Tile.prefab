@@ -292,3 +292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorSprites:
   - {fileID: 7540642555100254150}
+  outlineSprites:
+  - {fileID: 7540642555011664917}
+  body: {fileID: 7540642555797854808}

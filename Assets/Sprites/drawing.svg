@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="2168.6871"
-     inkscape:cy="1365.645"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="1708.0575"
+     inkscape:cy="2400.0413"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -209,5 +209,28 @@
        transform="matrix(0.36909275,0.2459936,-0.2459936,0.36909275,598.37567,222.19523)"
        inkscape:export-xdpi="93"
        inkscape:export-ydpi="93" />
+    <path
+       id="path896-8-8-3"
+       style="fill:#ffffff;stroke:#000000;stroke-width:6.78532;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:32.126;paint-order:fill markers stroke"
+       d="m 92.994769,488.69825 c 0.0014,0.45862 0.06127,0.91666 0.1792,1.37098 0.190971,0.73573 0.533282,1.45811 1.02079,2.15418 V 888.48964 H 129.82324 V 492.48627 c 1.02903,-1.35337 1.49683,-2.80871 1.37152,-4.26683 -0.46583,-5.42207 -8.87435,-9.69076 -19.08929,-9.69092 l -3.47069,0.16909 c -9.07337,0.8902 -15.653909,5.09803 -15.639841,10.00066 z"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93"
+       sodipodi:nodetypes="csccccscccc" />
+    <circle
+       style="fill:#b3b3b3;stroke:#000000;stroke-width:6.78532;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:32.126;paint-order:fill markers stroke"
+       id="path896-4-7"
+       sodipodi:type="arc"
+       sodipodi:cx="-889.61761"
+       sodipodi:cy="112.00864"
+       sodipodi:rx="10.153971"
+       sodipodi:ry="19.109751"
+       sodipodi:start="0"
+       sodipodi:end="6.100589"
+       sodipodi:open="true"
+       sodipodi:arc-type="chord"
+       inkscape:export-xdpi="93"
+       inkscape:export-ydpi="93"
+       d="m -879.46364,112.00864 a 10.153971,19.109751 0 0 1 -9.69062,19.08984 10.153971,19.109751 0 0 1 -10.57504,-17.34758 10.153971,19.109751 0 0 1 8.72547,-20.673097 10.153971,19.109751 0 0 1 11.37138,15.460817 z"
+       transform="rotate(-90)" />
   </g>
 </svg>
