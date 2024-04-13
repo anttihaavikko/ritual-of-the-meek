@@ -15,7 +15,7 @@ TagManager:
   - Room
   - Activator
   - Invisibles
-  - 
+  - Collectibles
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 3437970959
     locked: 0

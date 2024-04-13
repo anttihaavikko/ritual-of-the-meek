@@ -9,6 +9,10 @@ public class RoomChanger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Tweener.MoveToQuad(cam.transform, col.transform.position.WhereZ(-10), 0.5f);
+        var collectible = col.GetComponent<Collectible>();
+        if (!collectible)
+        {
+            Tweener.MoveToQuad(cam.transform, col.transform.position.WhereZ(-10), 0.5f);   
+        }
     }
 }
