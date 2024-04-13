@@ -9,16 +9,19 @@ public class Channeler : MonoBehaviour
     [SerializeField] private LineRenderer leftLightning, rightLightning;
     [SerializeField] private Camera cam;
     [SerializeField] private Grabber grabber;
+    [SerializeField] private Rigidbody2D scarfTip;
 
     public void FlutterCape()
     {
         leftCape.AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
         rightCape.AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
         cape.AddForce(new Vector2(Random.Range(-1f, 1f), 0), ForceMode2D.Impulse);
+        scarfTip.AddForce(new Vector2(Random.Range(-1f, 1f), 0), ForceMode2D.Impulse);
     }
 
     private void Start()
     {
+        scarfTip.transform.parent = null;
         Zap(leftLightning, Vector3.left * 0.3f);
         Zap(rightLightning, Vector3.right * 0.3f);
     }

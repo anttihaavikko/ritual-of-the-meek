@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private GameObject map;
     [SerializeField] private SpeechBubble bubble;
-    [SerializeField] private GameObject bag;
+    [SerializeField] private GameObject bag, dagger;
 
     private BubbleType hideWith;
     private readonly List<string> shownMessages = new ();
@@ -99,6 +99,13 @@ public class Game : MonoBehaviour
 
         if (!collection.Contains(type))
         {
+            if (type == CollectibleType.Dagger)
+            {
+                HasDagger = true;
+                dagger.SetActive(true);
+                ShowMessage("The most (essential tool) needed for the (ritual). Lucky find!", BubbleType.None, 4f);
+            }
+            
             if (type == CollectibleType.Map)
             {
                 HasMap = true;

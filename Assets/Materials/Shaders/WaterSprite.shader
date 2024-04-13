@@ -94,8 +94,8 @@
             }
             
 			fixed4 frag(v2f i) : SV_TARGET {
-			    fixed4 noise = tex2D(_NoiseTex, i.uv * 20 * 0.5 + float4(_Time.x * 0.6, 0, 0, 0));
-			    fixed4 second = tex2D(_NoiseTex, i.uv * 10 * 0.09 + float4(-_Time.x * 0.03, _Time.x * 0.01, 0, 0));
+			    fixed4 noise = tex2D(_NoiseTex, i.uv * 50 * 0.5 + float4(_Time.x * 1.2, 0, 0, 0));
+			    fixed4 second = tex2D(_NoiseTex, i.uv * 20 * 0.09 + float4(-_Time.x * 0.06, _Time.x * 0.02, 0, 0));
 			    float2 uv = i.uv.xy * 20 + noise * 0.06 + second * 0.5 + float4(_OffsetX, _OffsetY, 0, 0);
 			    fixed4 displace = tex2D(_DisplaceTex, scaleUv(i.uv, 4)/* + float2(-_OffsetX * 0.06, -_OffsetY * 0.06)*/);
 			    fixed2 direction = normalize(float2((displace.r - 0.5) * 10, (displace.g - 0.5) * 10));
