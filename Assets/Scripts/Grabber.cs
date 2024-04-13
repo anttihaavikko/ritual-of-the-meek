@@ -12,6 +12,7 @@ public class Grabber : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private CharacterMover characterMover;
+    [SerializeField] private Game game;
 
     private Rigidbody2D connected;
     private Vector3 start;
@@ -50,6 +51,8 @@ public class Grabber : MonoBehaviour
                 var tile = body.GetComponent<Tile>();
                 if (tile && tile.CanMove)
                 {
+                    game.HideBubbleIf(BubbleType.Grab);
+                    game.ShowMessage(InfoMessage.Grabbed);
                     held = tile;
                     start = tile.transform.position;
                     connected = body;
@@ -72,6 +75,7 @@ public class Grabber : MonoBehaviour
         {
             if (held && !stored)
             {
+                game.ShowMessage("I can (pull that out) any time I want by pressing (SPACE) again.", BubbleType.Release);
                 held.gameObject.SetActive(false);
                 stored = held;
                 Drop();
@@ -80,6 +84,7 @@ public class Grabber : MonoBehaviour
 
             if (!held && stored)
             {
+                game.HideBubbleIf(BubbleType.Release);
                 stored.gameObject.SetActive(true);
                 stored.Ghost();
                 preview = stored;
@@ -101,7 +106,11 @@ public class Grabber : MonoBehaviour
     private void Drop()
     {
         var tile = connected.GetComponent<Tile>();
-        if (tile && !tile.CanMove) tile.transform.position = start;
+        if (tile && !tile.CanMove)
+        {
+            tile.transform.position = start;
+            game.ShowMessage("I can't (place) the platform (too far) outside of my (immediate vicinity).", BubbleType.None, 4f);
+        }
         held = null;
         characterMover.Locked = false;
         joint.connectedBody = null;

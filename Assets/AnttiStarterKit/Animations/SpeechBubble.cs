@@ -79,8 +79,8 @@ namespace AnttiStarterKit.Animations
 
         private void Update()
         {
-            if (!Input.anyKeyDown) return;
-            SkipOrHide();
+            // if (!Input.anyKeyDown) return;
+            // SkipOrHide();
         }
 
         private void SkipOrHide()
@@ -106,7 +106,7 @@ namespace AnttiStarterKit.Animations
             PlaySound();
         }
 
-        private void Hide()
+        public void Hide()
         {
             showing = false;
             appearer.Hide();
