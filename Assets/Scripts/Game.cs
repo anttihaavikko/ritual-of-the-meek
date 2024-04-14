@@ -13,7 +13,9 @@ public class Game : MonoBehaviour
     [SerializeField] private GameObject bag, dagger, horns;
     [SerializeField] private GameObject mouth;
     [SerializeField] private Animator anim;
+    [SerializeField] private Animator mapAnim;
 
+    private bool mapShown;
     private BubbleType hideWith;
     private readonly List<string> shownMessages = new ();
     private int candles;
@@ -21,6 +23,8 @@ public class Game : MonoBehaviour
     private static readonly int Talk = Animator.StringToHash("talk");
     private static readonly int TiltRight = Animator.StringToHash("tilt-right");
     private static readonly int TiltLeft = Animator.StringToHash("tilt-left");
+    private static readonly int Open = Animator.StringToHash("open");
+    private static readonly int Close = Animator.StringToHash("close");
 
     public bool HasBag { get; private set; }
     public bool HasMap { get; private set; }
@@ -109,7 +113,13 @@ public class Game : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab) && HasMap)
         {
-            map.SetActive(!map.activeSelf);
+            // map.SetActive(!map.activeSelf);
+            mapShown = !mapShown;
+            map.SetActive(true);
+            mapAnim.ResetTrigger(Open);
+            mapAnim.ResetTrigger(Close);
+            mapAnim.SetTrigger(mapShown ? Open : Close);
+            if (!mapShown) this.StartCoroutine(() => map.SetActive(false), 0.2f);
             HideBubbleIf(BubbleType.Map);
         }
 
