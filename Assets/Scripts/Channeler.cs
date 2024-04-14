@@ -23,24 +23,24 @@ public class Channeler : MonoBehaviour
     private void Start()
     {
         scarfTip.transform.parent = null;
-        Zap(leftLightning, Vector3.left * 0.3f);
-        Zap(rightLightning, Vector3.right * 0.3f);
+        UpdateLightning();
     }
 
-    private void Update()
+    private void UpdateLightning()
     {
-        if (Random.value < 0.8f) return;
         Zap(leftLightning, Vector3.left * 0.3f);
         Zap(rightLightning, Vector3.right * 0.3f);
+        Invoke(nameof(UpdateLightning), 0.025f);
     }
 
     private void Zap(LineRenderer lightning, Vector3 offset)
     {
-        var mp = grabber.GetGrabPosition() + offset;
-        var end = lightning.transform.InverseTransformPoint(mp);
-        lightning.SetPosition(1, (end * 0.25f).RandomOffset(3f));
-        lightning.SetPosition(2, (end * 0.5f).RandomOffset(3f));
-        lightning.SetPosition(3, (end * 0.75f).RandomOffset(3f));
-        lightning.SetPosition(4, lightning.transform.InverseTransformPoint(mp));
+        var start = lightning.transform.position;
+        var end = grabber.GetGrabPosition() + offset;
+        lightning.SetPosition(0, start);
+        lightning.SetPosition(1, Vector3.Lerp(start, end, 0.25f).RandomOffset(0.45f));
+        lightning.SetPosition(2, Vector3.Lerp(start, end, 0.5f).RandomOffset(0.45f));
+        lightning.SetPosition(3, Vector3.Lerp(start, end, 0.75f).RandomOffset(0.45f));
+        lightning.SetPosition(4, end);
     }
 }
