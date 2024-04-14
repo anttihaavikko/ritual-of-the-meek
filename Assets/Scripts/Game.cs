@@ -215,7 +215,7 @@ public class Game : MonoBehaviour
             8 => "Almost there, I now have (eight candles) in total.",
             9 => "Yes, (another candle)! Only (one) more to find.",
             10 => "Finally, all (ten candles) gathered!",
-            _ => throw new ArgumentOutOfRangeException()
+            _ => "Lorem ipsum dolor"
         };
     }
 
