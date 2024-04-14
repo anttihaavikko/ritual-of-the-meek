@@ -7,6 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
     public Blinders blinders;
     public Transform spinner;
+    public Transform root;
 
     public string sceneToLoadAtStart;
 

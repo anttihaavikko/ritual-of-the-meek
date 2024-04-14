@@ -17,6 +17,11 @@ public class Ritual : MonoBehaviour
 
     private bool started;
 
+    private void Start()
+    {
+        beast.transform.parent = SceneChanger.Instance.root;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (started) return;

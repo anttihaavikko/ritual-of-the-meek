@@ -12316,6 +12316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Changer Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5194702151802706002, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
+      propertyPath: root
+      value: 
+      objectReference: {fileID: 1785554344}
     - target: {fileID: 7386376836480241146, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -20963,6 +20967,7 @@ RectTransform:
   - {fileID: 1907030328}
   - {fileID: 896103123}
   - {fileID: 875509543}
+  - {fileID: 1605236282}
   m_Father: {fileID: 2089211415}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74029,8 +74034,8 @@ RectTransform:
   - {fileID: 1059885003}
   - {fileID: 2075836407}
   - {fileID: 249926680}
-  m_Father: {fileID: 1785554344}
-  m_RootOrder: 2
+  m_Father: {fileID: 554344072}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
