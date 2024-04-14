@@ -23,7 +23,7 @@ public class Grabber : MonoBehaviour
     private Tile stored;
     private Tile preview;
     private Vector3 grabPosition;
-    private Vector3 offset;
+    private Vector3 offset, storedOffset;
     private Vector3 shape, storedShape;
 
     private void Update()
@@ -38,7 +38,7 @@ public class Grabber : MonoBehaviour
         
         if (preview)
         {
-            grabPosition = preview.transform.position;
+            grabPosition = preview.transform.position + storedOffset;
         }
         
         if (Input.GetMouseButtonDown(0))
@@ -106,6 +106,7 @@ public class Grabber : MonoBehaviour
                 game.ShowMessage("I can (pull that out) any time I want by pressing (SPACE) again.", BubbleType.Release);
                 held.gameObject.SetActive(false);
                 stored = held;
+                storedOffset = offset;
                 storedShape = shape;
                 Drop();
                 return;
@@ -126,7 +127,7 @@ public class Grabber : MonoBehaviour
 
         if (preview)
         {
-            preview.transform.position = mp;
+            preview.transform.position = mp - storedOffset;
         }
 
         if (connected && Input.GetMouseButtonUp(0))
