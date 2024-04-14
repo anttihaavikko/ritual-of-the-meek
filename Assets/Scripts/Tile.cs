@@ -5,8 +5,11 @@ public class Tile : MonoBehaviour
 {
     [SerializeField] private List<SpriteRenderer> colorSprites, outlineSprites;
     [SerializeField] private Rigidbody2D body;
+    [SerializeField] private bool heavy;
 
     public bool CanMove { get; private set; }
+
+    public bool IsHeavy => heavy;
     
     private int marks;
 

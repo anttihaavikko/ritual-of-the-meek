@@ -51,6 +51,12 @@ public class Grabber : MonoBehaviour
                 var tile = body.GetComponent<Tile>();
                 if (tile && tile.CanMove)
                 {
+                    if (tile.IsHeavy && !game.HasPower)
+                    {
+                        game.ShowMessage("That (platform) is (too heavy) for me to move.", BubbleType.None, 3f, true);
+                        return;
+                    }
+                    
                     game.HideBubbleIf(BubbleType.Grab);
                     game.ShowMessage(InfoMessage.Grabbed);
                     held = tile;

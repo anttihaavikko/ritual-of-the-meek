@@ -26,7 +26,7 @@ public class Game : MonoBehaviour
     public bool HasMap { get; private set; }
     public bool HasDagger { get; private set; }
     public bool HasVessel{ get; private set; }
-    public bool PlacedVessel { get; set; }
+    public bool HasPower { get; set; }
 
     public int CandleCount => candles;
 
@@ -60,11 +60,11 @@ public class Game : MonoBehaviour
         ShowMessage("I should get this (ritual) started. Got to find some (necessary ingredients).");
     }
 
-    public void ShowMessage(string message, BubbleType type = BubbleType.None, float delay = 0f)
+    public void ShowMessage(string message, BubbleType type = BubbleType.None, float delay = 0f, bool canRepeat = false)
     {
-        if(shownMessages.Contains(message)) return;
+        if(shownMessages.Contains(message) && !canRepeat) return;
         
-        shownMessages.Add(message);
+        if(!canRepeat) shownMessages.Add(message);
         
         hideWith = type;
         bubble.Show(message, true);
@@ -120,7 +120,7 @@ public class Game : MonoBehaviour
             dagger.SetActive(true);
             HasBag = true;
             bag.SetActive(true);
-            PlacedVessel = true;
+            HasPower = true;
             horns.SetActive(true);
         }
     }
