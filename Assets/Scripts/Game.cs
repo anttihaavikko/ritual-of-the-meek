@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 {
     [SerializeField] private GameObject map;
     [SerializeField] private SpeechBubble bubble;
-    [SerializeField] private GameObject bag, dagger;
+    [SerializeField] private GameObject bag, dagger, horns;
 
     private BubbleType hideWith;
     private readonly List<string> shownMessages = new ();
@@ -129,6 +129,11 @@ public class Game : MonoBehaviour
                 
             collection.Add(type);
         }
+    }
+
+    public void ShowHorns()
+    {
+        horns.SetActive(true);
     }
 
     private string GetCandleMessage()
