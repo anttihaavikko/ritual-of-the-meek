@@ -19,6 +19,8 @@ public class Game : MonoBehaviour
     public bool HasDagger { get; private set; }
     public bool HasVessel{ get; private set; }
 
+    public int CandleCount => candles;
+
     private void Start()
     {
         Invoke(nameof(StartMessage), 0.5f);
@@ -117,6 +119,12 @@ public class Game : MonoBehaviour
                 HasBag = true;
                 bag.SetActive(true);
                 ShowMessage("This (bag) can hold (extra platforms)! Press (SPACE) while holding one to (store) it.", BubbleType.Hold);
+            }
+            
+            if (type == CollectibleType.Vessel)
+            {
+                HasVessel = true;
+                ShowMessage("I should go place this (vessel) to the (ritual site).", BubbleType.None, 4f);
             }
                 
             collection.Add(type);
