@@ -15,6 +15,7 @@ public class Game : MonoBehaviour
     [SerializeField] private GameObject mouth;
     [SerializeField] private Animator anim;
     [SerializeField] private Animator mapAnim;
+    [SerializeField] private Dog dog;
 
     private bool mapShown;
     private BubbleType hideWith;
@@ -140,6 +141,14 @@ public class Game : MonoBehaviour
             bag.SetActive(true);
             HasPower = true;
             horns.SetActive(true);
+            candles = 10;
+        }
+
+        if (DevKey.Down(KeyCode.E))
+        {
+            var dt = dog.transform;
+            dt.position = transform.position.RandomOffset(1f);
+            dt.parent = null;
         }
     }
 

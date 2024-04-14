@@ -36,7 +36,7 @@ public class Dog : MonoBehaviour
         var mp = cam.ScreenToWorldPoint(Input.mousePosition).WhereZ(0);
         var wall = fakeWalls.Where(f => f.gameObject.activeSelf).OrderBy(f => Vector3.Distance(f.position, p)).FirstOrDefault();
         var wp = wall ? wall.position : Vector3.zero;
-        barking = wall && Vector3.Distance(p, wp) < Mathf.Min(Vector3.Distance(p, mp), 10f);
+        barking = wall && Vector3.Distance(p, wp) < Mathf.Min(Vector3.Distance(p, mp), 5f);
         return barking ? wp : mp;
     }
 
