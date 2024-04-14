@@ -13,7 +13,7 @@ public class Ritual : MonoBehaviour
     {
         if (game.HasVessel)
         {
-            game.ShowMessage("This (vessel) now surges with (power). I feel like I could move (heavy platforms).");
+            game.ShowMessage("This (vessel) now surges with (power). I feel like I could move (heavy platforms).", BubbleType.None, 5f);
             vessel.SetActive(true);
             game.ShowHorns();
         }

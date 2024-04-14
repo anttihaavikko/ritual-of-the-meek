@@ -1,19 +1,26 @@
 using System;
 using System.Collections.Generic;
 using AnttiStarterKit.Animations;
+using AnttiStarterKit.Extensions;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Game : MonoBehaviour
 {
     [SerializeField] private GameObject map;
     [SerializeField] private SpeechBubble bubble;
     [SerializeField] private GameObject bag, dagger, horns;
+    [SerializeField] private GameObject mouth;
+    [SerializeField] private Animator anim;
 
     private BubbleType hideWith;
     private readonly List<string> shownMessages = new ();
     private int candles;
     private readonly List<CollectibleType> collection = new();
-    
+    private static readonly int Talk = Animator.StringToHash("talk");
+    private static readonly int TiltRight = Animator.StringToHash("tilt-right");
+    private static readonly int TiltLeft = Animator.StringToHash("tilt-left");
+
     public bool HasBag { get; private set; }
     public bool HasMap { get; private set; }
     public bool HasDagger { get; private set; }
@@ -23,7 +30,22 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
+        bubble.onVocal += OpenMouth;
+        bubble.onWord += Tilt;
         Invoke(nameof(StartMessage), 0.5f);
+    }
+
+    private void Tilt()
+    {
+        anim.SetTrigger(Random.value < 0.5f ? TiltRight : TiltLeft);
+    }
+    
+    private void OpenMouth()
+    {
+        // anim.SetTrigger(Talk);
+        // anim.SetTrigger(Random.value < 0.5f ? TiltRight : TiltLeft);
+        mouth.SetActive(true);
+        this.StartCoroutine(() => mouth.SetActive(false), 0.1f);
     }
 
     public void HideBubbleIf(BubbleType type)
