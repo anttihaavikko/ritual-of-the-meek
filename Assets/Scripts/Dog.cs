@@ -47,7 +47,7 @@ public class Dog : MonoBehaviour
             transform.parent = hit.transform;
         }
 
-        if (barking && Random.value < 0.1f)
+        if (barking && Random.value < 0.005f)
         {
             anim.SetTrigger(Bark);
         }
