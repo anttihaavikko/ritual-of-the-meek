@@ -18,7 +18,7 @@ public class BubbleFlipper : MonoBehaviour
     {
         var position = transform.position;
         var camPos = cam.transform.position;
-        var flipped = position.x > camPos.x;
+        var flipped = position.x > camPos.x + 3;
         var flipVertical = position.y > camPos.y + 3;
         transform.localScale = new Vector3(flipped ? -scale : scale, flipVertical ? -scale : scale, 1f);
         text.localScale = new Vector3(flipped ? -1f : 1f, flipVertical ? -1f : 1f, 1f);
