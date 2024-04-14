@@ -5,6 +5,8 @@ using AnttiStarterKit.Extensions;
 using AnttiStarterKit.Managers;
 using AnttiStarterKit.Utils;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
 public class Game : MonoBehaviour
@@ -17,6 +19,8 @@ public class Game : MonoBehaviour
     [SerializeField] private Animator mapAnim;
     [SerializeField] private Dog dog;
     [SerializeField] private Appearer titleTop, titleBottom;
+    [SerializeField] private Volume volume;
+    
 
     private bool mapShown;
     private BubbleType hideWith;
@@ -24,6 +28,7 @@ public class Game : MonoBehaviour
     private int candles;
     private readonly List<CollectibleType> collection = new();
     private bool started;
+    private ColorAdjustments colors;
     
     private static readonly int Talk = Animator.StringToHash("talk");
     private static readonly int TiltRight = Animator.StringToHash("tilt-right");
@@ -43,6 +48,7 @@ public class Game : MonoBehaviour
     {
         bubble.onVocal += OpenMouth;
         bubble.onWord += Tilt;
+        volume.profile.TryGet(out colors);
     }
 
     private void Tilt()
@@ -125,6 +131,11 @@ public class Game : MonoBehaviour
             titleTop.Hide();
             titleBottom.Hide();
             Invoke(nameof(StartMessage), 0.5f);
+        }
+
+        if (started)
+        {
+            colors.saturation.value = Mathf.MoveTowards(colors.saturation.value, 0, Time.deltaTime * 180f);
         }
         
         if (Input.GetKeyDown(KeyCode.Tab) && HasMap)
