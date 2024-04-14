@@ -12069,6 +12069,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5089579902561069690, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5089579902561069692, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
       propertyPath: m_Name
       value: Scene Changer Canvas
