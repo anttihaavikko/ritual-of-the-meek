@@ -16,6 +16,7 @@ public class Ritual : MonoBehaviour
             game.ShowMessage("This (vessel) now surges with (power). I feel like I could move (heavy platforms).", BubbleType.None, 5f);
             vessel.SetActive(true);
             game.ShowHorns();
+            game.PlacedVessel = true;
         }
         
         candles.Take(game.CandleCount).ToList().ForEach(c => c.SetActive(true));

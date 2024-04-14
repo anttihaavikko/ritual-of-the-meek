@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AnttiStarterKit.Animations;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -25,6 +26,7 @@ public class Game : MonoBehaviour
     public bool HasMap { get; private set; }
     public bool HasDagger { get; private set; }
     public bool HasVessel{ get; private set; }
+    public bool PlacedVessel { get; set; }
 
     public int CandleCount => candles;
 
@@ -109,6 +111,17 @@ public class Game : MonoBehaviour
         {
             map.SetActive(!map.activeSelf);
             HideBubbleIf(BubbleType.Map);
+        }
+
+        if (DevKey.Down(KeyCode.Q))
+        {
+            HasMap = true;
+            HasDagger = true;
+            dagger.SetActive(true);
+            HasBag = true;
+            bag.SetActive(true);
+            PlacedVessel = true;
+            horns.SetActive(true);
         }
     }
 
