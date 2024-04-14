@@ -13,6 +13,7 @@ public class Grabber : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private CharacterMover characterMover;
     [SerializeField] private Game game;
+    [SerializeField] private Color waterColor, edgeColor;
 
     private Rigidbody2D connected;
     private Vector3 start;
@@ -94,7 +95,7 @@ public class Grabber : MonoBehaviour
             {
                 game.HideBubbleIf(BubbleType.Release);
                 stored.gameObject.SetActive(true);
-                stored.Ghost();
+                stored.Ghost(waterColor, edgeColor);
                 preview = stored;
                 stored = null;
             }

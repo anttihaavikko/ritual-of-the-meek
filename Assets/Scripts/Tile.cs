@@ -26,15 +26,16 @@ public class Tile : MonoBehaviour
         CanMove = state;
     }
 
-    public void Ghost()
+    public void Ghost(Color waterColor, Color edgeColor)
     {
-        outlineSprites.ForEach(s => s.color = Color.clear);
+        outlineSprites.ForEach(s => s.color = edgeColor);
         body.bodyType = RigidbodyType2D.Static;
-        Colorize(new Color(1, 1, 1, 0.3f));
+        Colorize(waterColor);
     }
 
     public void Solidify()
     {
+        marks = 0;
         body.bodyType = RigidbodyType2D.Dynamic;
         outlineSprites.ForEach(s => s.color = Color.black);
         Colorize(Color.white);
