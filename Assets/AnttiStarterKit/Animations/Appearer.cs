@@ -62,9 +62,9 @@ namespace AnttiStarterKit.Animations
             
             IsShown = false;
 
-            Tweener.Instance.ScaleTo(transform, hiddenSize, 0.2f, 0f, TweenEasings.QuadraticEaseOut);
+            Tweener.Instance.ScaleTo(transform, hiddenSize, 0.5f, 0f, TweenEasings.QuadraticEaseOut);
         
-            if(visuals) Invoke(nameof(MakeInactive), 0.2f);
+            if(visuals) Invoke(nameof(MakeInactive), 0.5f);
         }
 
         private void MakeInactive()

@@ -16,12 +16,15 @@ public class Game : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Animator mapAnim;
     [SerializeField] private Dog dog;
+    [SerializeField] private Appearer titleTop, titleBottom;
 
     private bool mapShown;
     private BubbleType hideWith;
     private readonly List<string> shownMessages = new ();
     private int candles;
     private readonly List<CollectibleType> collection = new();
+    private bool started;
+    
     private static readonly int Talk = Animator.StringToHash("talk");
     private static readonly int TiltRight = Animator.StringToHash("tilt-right");
     private static readonly int TiltLeft = Animator.StringToHash("tilt-left");
@@ -40,7 +43,6 @@ public class Game : MonoBehaviour
     {
         bubble.onVocal += OpenMouth;
         bubble.onWord += Tilt;
-        Invoke(nameof(StartMessage), 0.5f);
     }
 
     private void Tilt()
@@ -117,6 +119,14 @@ public class Game : MonoBehaviour
 
     private void Update()
     {
+        if (!started && Input.anyKeyDown)
+        {
+            started = true;
+            titleTop.Hide();
+            titleBottom.Hide();
+            Invoke(nameof(StartMessage), 0.5f);
+        }
+        
         if (Input.GetKeyDown(KeyCode.Tab) && HasMap)
         {
             // map.SetActive(!map.activeSelf);
