@@ -14,7 +14,7 @@ public class Ritual : MonoBehaviour
     {
         var litCandles = candles.Take(game.CandleCount).ToList();
 
-        if (!game.HasPower || litCandles.Any(c => !c.activeSelf))
+        if (!game.HasPower || game.CandleCount > 0 && litCandles.Any(c => !c.activeSelf))
         {
             var p = transform.position;
             AudioManager.Instance.PlayEffectAt(9, p, 1f);
