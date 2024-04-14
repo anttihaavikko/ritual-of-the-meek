@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -51,5 +52,10 @@ public class Dog : MonoBehaviour
         {
             anim.SetTrigger(Bark);
         }
+    }
+
+    public void BarkSound()
+    {
+        AudioManager.Instance.PlayEffectFromCollection(1, transform.position);
     }
 }

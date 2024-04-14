@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AnttiStarterKit.Animations;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Managers;
 using AnttiStarterKit.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -43,6 +44,10 @@ public class Game : MonoBehaviour
 
     private void Tilt()
     {
+        var p = mouth.transform.position;
+        // AudioManager.Instance.PlayEffectAt(0, p, 2f);
+        AudioManager.Instance.PlayEffectAt(2, p, 1.5f);
+        AudioManager.Instance.PlayEffectFromCollection(0, p);
         anim.SetTrigger(Random.value < 0.5f ? TiltRight : TiltLeft);
     }
     
@@ -114,6 +119,9 @@ public class Game : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && HasMap)
         {
             // map.SetActive(!map.activeSelf);
+            var p = transform.position;
+            AudioManager.Instance.PlayEffectAt(8, p, 7f);
+            AudioManager.Instance.PlayEffectAt(6, p, 1f);
             mapShown = !mapShown;
             map.SetActive(true);
             mapAnim.ResetTrigger(Open);
@@ -135,12 +143,15 @@ public class Game : MonoBehaviour
         }
     }
 
-    public void Collect(CollectibleType type)
+    public void Collect(CollectibleType type, Vector3 p)
     {
+        AudioManager.Instance.PlayEffectAt(9, p, 1f);
+        AudioManager.Instance.PlayEffectAt(10, p, 2f);
+        
         if (type == CollectibleType.Candle)
         {
             candles++;
-            ShowMessage(GetCandleMessage(), BubbleType.None, 3f);
+            ShowMessage(GetCandleMessage(), BubbleType.None, 5f);
             return;
         }
 
@@ -150,7 +161,7 @@ public class Game : MonoBehaviour
             {
                 HasDagger = true;
                 dagger.SetActive(true);
-                ShowMessage("The most (essential tool) needed for the (ritual). Lucky find!", BubbleType.None, 4f);
+                ShowMessage("The most (essential tool) needed for the (ritual). Lucky find!", BubbleType.None, 5f);
             }
             
             if (type == CollectibleType.Map)
@@ -169,7 +180,7 @@ public class Game : MonoBehaviour
             if (type == CollectibleType.Vessel)
             {
                 HasVessel = true;
-                ShowMessage("I should go place this (vessel) to the (ritual site).", BubbleType.None, 4f);
+                ShowMessage("I should go place this (vessel) to the (ritual site).", BubbleType.None, 5f);
             }
                 
             collection.Add(type);
@@ -197,6 +208,11 @@ public class Game : MonoBehaviour
             10 => "Finally, all (ten candles) gathered!",
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+
+    public void PlaySound(int soundIndex)
+    {
+        AudioManager.Instance.PlayEffectAt(soundIndex, transform.position);
     }
 }
 

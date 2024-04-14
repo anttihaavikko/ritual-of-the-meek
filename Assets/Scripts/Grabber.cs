@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Managers;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -30,14 +31,20 @@ public class Grabber : MonoBehaviour
 
         if (held)
         {
-            var p = held.transform.position;
-            grabPosition = p + offset;
+            grabPosition = held.transform.position + offset;
+        }
+        
+        if (preview)
+        {
+            grabPosition = preview.transform.position;
         }
         
         if (Input.GetMouseButtonDown(0))
         {
             if (preview)
             {
+                characterMover.Channel(false);
+                PickSound(preview.transform.position);
                 preview.Solidify();
                 preview = null;
                 return;
@@ -57,6 +64,8 @@ public class Grabber : MonoBehaviour
                         game.ShowMessage("That (platform) is (too heavy) for me to move.", BubbleType.None, 3f, true);
                         return;
                     }
+
+                    AudioManager.Instance.TargetPitch = 1.2f;
                     
                     game.HideBubbleIf(BubbleType.Grab);
                     game.ShowMessage(InfoMessage.Grabbed);
@@ -72,6 +81,8 @@ public class Grabber : MonoBehaviour
                     offset = mp - start;
 
                     characterMover.Channel(true);
+                    
+                    PickSound(mp);
                 }
             }
 
@@ -93,11 +104,13 @@ public class Grabber : MonoBehaviour
 
             if (!held && stored)
             {
+                PickSound(mp);
                 game.HideBubbleIf(BubbleType.Release);
                 stored.gameObject.SetActive(true);
                 stored.Ghost(waterColor, edgeColor);
                 preview = stored;
                 stored = null;
+                characterMover.Channel(true);
             }
         }
 
@@ -127,6 +140,17 @@ public class Grabber : MonoBehaviour
         connected.velocity = Vector2.zero;
         connected = null;
         characterMover.Channel(false);
+        
+        AudioManager.Instance.TargetPitch = 1f;
+        PickSound(tile.transform.position);
+    }
+
+    private void PickSound(Vector3 pos)
+    {
+        AudioManager.Instance.PlayEffectAt(5, pos, 1.5f);
+        AudioManager.Instance.PlayEffectAt(6, pos, 1f);
+        AudioManager.Instance.PlayEffectFromCollection(2, pos);
+        AudioManager.Instance.PlayEffectAt(7, pos, 1.5f);
     }
 
     public Vector3 GetGrabPosition()

@@ -8,7 +8,7 @@ public class Collectible : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        game.Collect(type);
+        game.Collect(type, transform.position);
         gameObject.SetActive(false);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using AnttiStarterKit.Extensions;
+using AnttiStarterKit.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
