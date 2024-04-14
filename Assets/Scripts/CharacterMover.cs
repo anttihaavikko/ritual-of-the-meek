@@ -58,21 +58,21 @@ public class CharacterMover : MonoBehaviour
         
         var pos = t.position + direction * 0.03f;
         const float distance = 0.25f;
-        const float vertical = 0.5f;
+        const float vertical = 0.75f;
         
         // var leftBlocked = Check(pos + Vector3.left * distance, blockMask);
         // var rightBlocked = Check(pos + Vector3.right * distance, blockMask);
         // if (leftBlocked || rightBlocked) return false;
         
-        var left = Check(pos + Vector3.left * distance, walkMask);
-        var right = Check(pos + Vector3.right * distance, walkMask);
-        var up = Check(pos + Vector3.up * distance * vertical, walkMask);
-        var down = Check(pos + Vector3.down * distance * vertical, walkMask);
+        var left = direction.x > -0.1f || Check(pos + Vector3.left * distance, walkMask);
+        var right = direction.x < 0.1f || Check(pos + Vector3.right * distance, walkMask);
+        var up = direction.y < 0.1f || Check(pos + Vector3.up * distance * vertical, walkMask);
+        var down = direction.y > -0.1f ||Check(pos + Vector3.down * distance * vertical, walkMask);
 
-        // DebugDraw.Square(pos + Vector3.left * distance, left ? Color.green : Color.red, 0.3f);
-        // DebugDraw.Square(pos + Vector3.right * distance, right ? Color.green : Color.red, 0.3f);
-        // DebugDraw.Square(pos + Vector3.up * distance * vertical, up ? Color.green : Color.red, 0.3f);
-        // DebugDraw.Square(pos + Vector3.down * distance * vertical, down ? Color.green : Color.red, 0.3f);
+        DebugDraw.Square(pos + Vector3.left * distance, left ? Color.green : Color.red, 0.3f);
+        DebugDraw.Square(pos + Vector3.right * distance, right ? Color.green : Color.red, 0.3f);
+        DebugDraw.Square(pos + Vector3.up * distance * vertical, up ? Color.green : Color.red, 0.3f);
+        DebugDraw.Square(pos + Vector3.down * distance * vertical, down ? Color.green : Color.red, 0.3f);
 
         if (left && right && up && down)
         {

@@ -4855,6 +4855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Changer Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7386376836480241146, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d711e4bea21194239ab81b5e9fa6219a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ea6879cc535745719cc7fc8a56da4b2, type: 3}
 --- !u!1 &397288552
@@ -33020,7 +33024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7540642555797854811, guid: f4ee728f70fab4601bcfca30d5547532, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.05
+      value: 9.65
       objectReference: {fileID: 0}
     - target: {fileID: 7540642555797854811, guid: f4ee728f70fab4601bcfca30d5547532, type: 3}
       propertyPath: m_LocalPosition.y
@@ -35784,7 +35788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5469648955277071, guid: f4ee728f70fab4601bcfca30d5547532, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 101844438627527571, guid: f4ee728f70fab4601bcfca30d5547532, type: 3}
       propertyPath: m_LocalScale.x
