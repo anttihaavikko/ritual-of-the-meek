@@ -15,6 +15,7 @@ public class Grabber : MonoBehaviour
     [SerializeField] private CharacterMover characterMover;
     [SerializeField] private Game game;
     [SerializeField] private Color waterColor, edgeColor;
+    [SerializeField] private ParticleSystem pickEffect;
 
     private Rigidbody2D connected;
     private Vector3 start;
@@ -23,6 +24,7 @@ public class Grabber : MonoBehaviour
     private Tile preview;
     private Vector3 grabPosition;
     private Vector3 offset;
+    private Vector3 shape, storedShape;
 
     private void Update()
     {
@@ -46,6 +48,8 @@ public class Grabber : MonoBehaviour
                 characterMover.Channel(false);
                 PickSound(preview.transform.position);
                 preview.Solidify();
+                shape = storedShape;
+                Splash(mp);
                 preview = null;
                 return;
             }
@@ -64,6 +68,10 @@ public class Grabber : MonoBehaviour
                         game.ShowMessage("That (platform) is (too heavy) for me to move.", BubbleType.None, 3f, true);
                         return;
                     }
+
+                    var bt = block.transform;
+                    shape = bt.localScale;
+                    Splash(bt.position);
 
                     AudioManager.Instance.TargetPitch = 1.2f;
                     
@@ -98,12 +106,14 @@ public class Grabber : MonoBehaviour
                 game.ShowMessage("I can (pull that out) any time I want by pressing (SPACE) again.", BubbleType.Release);
                 held.gameObject.SetActive(false);
                 stored = held;
+                storedShape = shape;
                 Drop();
                 return;
             }
 
             if (!held && stored)
             {
+                Splash(stored.transform.position);
                 PickSound(mp);
                 game.HideBubbleIf(BubbleType.Release);
                 stored.gameObject.SetActive(true);
@@ -125,14 +135,26 @@ public class Grabber : MonoBehaviour
         }
     }
 
+    private void Splash(Vector3 pos)
+    {
+        var shapeModule = pickEffect.shape;
+        shapeModule.scale = shape;
+        pickEffect.transform.position = pos;
+        pickEffect.Play();
+    }
+
     private void Drop()
     {
         var tile = connected.GetComponent<Tile>();
         if (tile && !tile.CanMove)
         {
             tile.transform.position = start;
+            Splash(start);
             game.ShowMessage("I can't (place) the platform (too far) outside of my (immediate vicinity).", BubbleType.None, 4f);
         }
+
+        var p = tile.transform.position;
+        Splash(p);
         held = null;
         characterMover.Locked = false;
         joint.connectedBody = null;
@@ -142,7 +164,7 @@ public class Grabber : MonoBehaviour
         characterMover.Channel(false);
         
         AudioManager.Instance.TargetPitch = 1f;
-        PickSound(tile.transform.position);
+        PickSound(p);
     }
 
     private void PickSound(Vector3 pos)
