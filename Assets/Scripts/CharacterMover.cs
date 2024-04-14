@@ -69,10 +69,10 @@ public class CharacterMover : MonoBehaviour
         var up = direction.y < 0.1f || Check(pos + Vector3.up * distance * vertical, walkMask);
         var down = direction.y > -0.1f ||Check(pos + Vector3.down * distance * vertical, walkMask);
 
-        DebugDraw.Square(pos + Vector3.left * distance, left ? Color.green : Color.red, 0.3f);
-        DebugDraw.Square(pos + Vector3.right * distance, right ? Color.green : Color.red, 0.3f);
-        DebugDraw.Square(pos + Vector3.up * distance * vertical, up ? Color.green : Color.red, 0.3f);
-        DebugDraw.Square(pos + Vector3.down * distance * vertical, down ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.left * distance, left ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.right * distance, right ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.up * distance * vertical, up ? Color.green : Color.red, 0.3f);
+        // DebugDraw.Square(pos + Vector3.down * distance * vertical, down ? Color.green : Color.red, 0.3f);
 
         if (left && right && up && down)
         {
