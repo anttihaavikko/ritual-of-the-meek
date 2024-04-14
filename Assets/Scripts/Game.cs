@@ -175,11 +175,16 @@ public class Game : MonoBehaviour
     {
         return candles switch
         {
-            1 => "Exactly what I need for the (ritual), except (five) of them.",
-            2 => "Yes, (another candle)! Only (three) more.",
-            3 => "Yes, (another candle)! Only (two) more.",
-            4 => "Yes, (another candle)! Only (one) more.",
-            5 => "Finally, all (five candles)!",
+            1 => "Exactly what I need for the (ritual), except total of (ten) of them.",
+            2 => "Yes, (candle)! But I still need to find (eight) more.",
+            3 => "Sweet, (another candle)! Still need (seven) more.",
+            4 => "A ha, (a candle)! Only (six) more.",
+            5 => "Yes, (another candle)! Half way there!",
+            6 => "The glass is (half full). I've got (six) of these (candles) now.",
+            7 => "I have (seven candles) now! The time of the (ritual) draws near...",
+            8 => "Almost there, I now have (eight candles) in total.",
+            9 => "Yes, (another candle)! Only (one) more to find.",
+            10 => "Finally, all (ten candles) gathered!",
             _ => throw new ArgumentOutOfRangeException()
         };
     }
