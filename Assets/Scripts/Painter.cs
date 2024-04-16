@@ -6,7 +6,9 @@ public class Painter : MonoBehaviour
 {
     [SerializeField] private Color color = Color.black;
     [SerializeField] private int brushSize = 5;
-    
+    [SerializeField] private Texture2D cursor;
+    [SerializeField] private Vector2 cursorHotspot;
+
     private Canvas canvas;
     private Texture2D texture;
     private Vector3 offset;
@@ -87,14 +89,32 @@ public class Painter : MonoBehaviour
         return p.x > corners[0].x && p.y > corners[0].y && p.x < corners[2].x && p.y < corners[2].y;
     }
 
+    private void OnDisable()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
     private void Update()
     {
         var mp = Input.mousePosition;
         var holding = Input.GetMouseButton(0);
+        var inside = IsInside(mp);
         
         var p = (mp - offset) / canvas.scaleFactor;
+
+        if (cursor)
+        {
+            if (inside)
+            {
+                Cursor.SetCursor(cursor, cursorHotspot, CursorMode.Auto);
+            }
+            else
+            {
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            }
+        }
         
-        if (holding && IsInside(mp))
+        if (holding && inside)
         {
             if (connect)
             {

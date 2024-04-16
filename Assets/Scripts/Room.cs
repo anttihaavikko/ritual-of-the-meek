@@ -8,11 +8,12 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        contents.SetActive(startState);
+        // contents.SetActive(startState);
     }
 
     public void Activate()
     {
-        contents.SetActive(true);
+        contents.transform.Find("MapMasker").gameObject.SetActive(false);
+        // contents.SetActive(true);
     }
 }
