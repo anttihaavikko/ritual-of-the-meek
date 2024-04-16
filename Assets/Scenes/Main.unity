@@ -9462,8 +9462,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8352941, g: 0.7764706, b: 0.47843137, a: 1}
-      key1: {r: 0.8352941, g: 0.7764706, b: 0.47843137, a: 1}
+      key0: {r: 0.8352941, g: 0.77254903, b: 0.47843137, a: 1}
+      key1: {r: 0.8352941, g: 0.77254903, b: 0.47843137, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -22513,6 +22513,7 @@ RectTransform:
   m_Children:
   - {fileID: 1293395204}
   - {fileID: 595961982}
+  - {fileID: 658177796}
   m_Father: {fileID: 1907030328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24381,6 +24382,94 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &658177795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 658177796}
+  - component: {fileID: 658177798}
+  - component: {fileID: 658177797}
+  - component: {fileID: 658177799}
+  m_Layer: 5
+  m_Name: Paint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &658177796
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658177795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 620933343}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -6.41, y: -0.00099182}
+  m_SizeDelta: {x: 747.185, y: 460}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &658177797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658177795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &658177798
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658177795}
+  m_CullTransparentMesh: 1
+--- !u!114 &658177799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658177795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899855b038654ec5bdeca55b2b89f1ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.023529412, g: 0.654902, b: 0.49019608, a: 1}
+  brushSize: 5
 --- !u!1001 &661312935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24783,7 +24872,7 @@ GameObject:
   - component: {fileID: 690224248}
   - component: {fileID: 690224247}
   m_Layer: 16
-  m_Name: Fake Wall
+  m_Name: Fake Wall 2
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27244,7 +27333,7 @@ GameObject:
   - component: {fileID: 800810775}
   - component: {fileID: 800810774}
   m_Layer: 16
-  m_Name: Fake Wall
+  m_Name: Fake Wall 1
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27675,7 +27764,7 @@ GameObject:
   - component: {fileID: 822096178}
   - component: {fileID: 822096177}
   m_Layer: 16
-  m_Name: Fake Wall
+  m_Name: Fake Wall 4
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -28489,7 +28578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &875509543
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28997,7 +29086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &896103123
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55272,6 +55361,7 @@ MonoBehaviour:
   - {fileID: 800810773}
   - {fileID: 822096176}
   - {fileID: 2090340923}
+  - {fileID: 690224246}
   anim: {fileID: 1199685245}
 --- !u!114 &1199685247
 MonoBehaviour:
@@ -72433,8 +72523,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8352941, g: 0.7764706, b: 0.47843137, a: 1}
-      key1: {r: 0.8352941, g: 0.7764706, b: 0.47843137, a: 1}
+      key0: {r: 0.8352941, g: 0.77254903, b: 0.47843137, a: 1}
+      key1: {r: 0.8352941, g: 0.77254903, b: 0.47843137, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -73211,7 +73301,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.019607844, g: 0.18431373, b: 0.37254903, a: 0}
+  m_BackGroundColor: {r: 0.019607844, g: 0.18431373, b: 0.37254903, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -105284,7 +105374,7 @@ GameObject:
   - component: {fileID: 2090340924}
   - component: {fileID: 2090340926}
   m_Layer: 16
-  m_Name: Fake Wall
+  m_Name: Fake Wall 3
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
