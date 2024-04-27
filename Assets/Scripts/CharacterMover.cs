@@ -66,8 +66,8 @@ public class CharacterMover : MonoBehaviour
         
         var left = direction.x > -0.1f || Check(pos + Vector3.left * distance, walkMask);
         var right = direction.x < 0.1f || Check(pos + Vector3.right * distance, walkMask);
-        var up = direction.y < 0.1f || Check(pos + Vector3.up * distance * vertical, walkMask);
-        var down = direction.y > -0.1f ||Check(pos + Vector3.down * distance * vertical, walkMask);
+        var up = direction.y < 0.1f || Check(pos + Vector3.up * (distance * vertical), walkMask);
+        var down = direction.y > -0.1f ||Check(pos + Vector3.down * (distance * vertical), walkMask);
 
         // DebugDraw.Square(pos + Vector3.left * distance, left ? Color.green : Color.red, 0.3f);
         // DebugDraw.Square(pos + Vector3.right * distance, right ? Color.green : Color.red, 0.3f);
@@ -102,6 +102,7 @@ public class CharacterMover : MonoBehaviour
 
     public void Channel(bool state)
     {
+        Locked = state;
         anim.SetBool(Channeling, state);
     }
 }
