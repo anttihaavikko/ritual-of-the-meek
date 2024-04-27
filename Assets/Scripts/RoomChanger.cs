@@ -13,7 +13,7 @@ public class RoomChanger : MonoBehaviour
         var room = col.GetComponent<Room>();
         if (room)
         {
-            Tweener.MoveToQuad(cam.transform, col.transform.position.WhereZ(-10), 0.5f);
+            // Tweener.MoveToQuad(cam.transform, col.transform.position.WhereZ(-10), 0.5f);
             room.Activate();
         }
         
